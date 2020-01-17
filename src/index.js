@@ -32,7 +32,7 @@ async function fetchJsonFromUrl(url) {
 
     return data;
   } catch (err) {
-    throw new Error('Failed to fetch from URL');
+    return [];
   }
 }
 
