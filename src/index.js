@@ -1,25 +1,20 @@
 const URL_LIST = require('./config');
 const { fetchJsonFromUrl, formatJson } = require('./utils');
 
-/**
- * URLs to fetch:
- * https://pastebin.com/raw/xnU3bRvH
- * https://pastebin.com/raw/StjwkCib
- * https://pastebin.com/raw/RUcap17D
- * https://pastebin.com/raw/fKt6beV2
- * https://pastebin.com/raw/ajRSf4FF
- *
- * The function should return Array only.
+/* Fetches JSON from each URL in the URL_LIST
+ * and returns the formatted JSON array.
+ * @returns {Promise<Array<Object>>}
  */
 async function fetchUrlList() {
   const formattedJsonArray = (
     await Promise.all(URL_LIST.map(url => fetchJsonFromUrl(url)))
   ).map(jsonResponse => formatJson(jsonResponse));
 
+  /** Flatten array */
   return [].concat(...formattedJsonArray);
 }
 
-/* Run function and print result */
+/* Run the fetchUrlList function and prints the result */
 (async () => console.log(await fetchUrlList()))();
 
 module.exports = {

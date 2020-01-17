@@ -2,8 +2,8 @@ const { assert } = require('chai');
 
 const { fetchUrlList } = require('../');
 
-describe('Fetch URL list', function() {
-  it('it should fetch an array of objects', async function() {
+describe('Fetch a list of URLs', function() {
+  it('it should fetch an array of objects in the expected format', async function() {
     const expected = [
       {
         name: 'V-neck wool sweater',
