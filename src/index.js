@@ -1,8 +1,7 @@
 const URL_LIST = require('./config');
 const { fetchJsonFromUrl, formatJson } = require('./utils');
 
-/* Fetches JSON from each URL in the URL_LIST
- * and returns the formatted JSON array.
+/* Returns a formatted Array of Objects from each URL in the URL_LIST
  * @returns {Promise<Array<Object>>}
  */
 async function fetchUrlList() {

@@ -1,6 +1,7 @@
 const axios = require('axios');
 
-/* Returns GET response from URL as JSON
+/* Returns the GET response from the URL as an Object.
+ * Axios auto transforms the JSON response to an Object.
  * @param {string} url
  * @returns {Promise<Array<Object>>}
  */
@@ -13,7 +14,7 @@ exports.fetchJsonFromUrl = async url => {
   }
 };
 
-/* Format the JSON response in the array of objects
+/* Returns a formatted Array of Objects with the specified keys only.
  * @param {Array<Object>} jsonResponse
  * @returns {Array<Object>}
  */
