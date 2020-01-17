@@ -19,9 +19,9 @@ exports.fetchJsonFromUrl = async url => {
  * @returns {Array<Object>}
  */
 exports.formatJson = jsonResponse =>
-  jsonResponse.map(({ name, url, priceData, thumbnail }) => ({
+  jsonResponse.map(({ name, url, priceData: { value: price }, thumbnail }) => ({
     name,
     url,
-    price: priceData.value,
+    price,
     thumbnail
   }));
