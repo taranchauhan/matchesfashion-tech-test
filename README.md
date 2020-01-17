@@ -27,4 +27,4 @@ Runs the function in `src/index.js` and console logs the result.
 
 ### `npm test`
 
-Runs the test case to verify that the URL's specified in config.js return the expected array of objects in the correct format.
+Runs the test case in `src/test/index.test.js` to verify that the URL's specified in `src/config.js` return the expected array of objects in the correct format.
