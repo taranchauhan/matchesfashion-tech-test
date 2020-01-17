@@ -20,10 +20,7 @@ async function fetchUrlList() {
 }
 
 /* Run function and print result */
-(async () => {
-  const result = await fetchUrlList();
-  console.log(result);
-})();
+(async () => console.log(await fetchUrlList()))();
 
 module.exports = {
   fetchUrlList
