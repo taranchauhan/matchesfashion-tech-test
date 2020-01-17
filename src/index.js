@@ -1,6 +1,5 @@
-const axios = require('axios');
-
 const URL_LIST = require('./config');
+const { fetchJsonFromUrl, formatJson } = require('./utils');
 
 /**
  * URLs to fetch:
@@ -15,39 +14,15 @@ const URL_LIST = require('./config');
 async function fetchUrlList() {
   const formattedJsonArray = (
     await Promise.all(URL_LIST.map(url => fetchJsonFromUrl(url)))
-  ).map(jsonResponseArray => formatJson(jsonResponseArray));
+  ).map(jsonResponse => formatJson(jsonResponse));
 
   return [].concat(...formattedJsonArray);
 }
 
-async function fetchJsonFromUrl(url) {
-  try {
-    const response = await axios.get(url);
-    const { data } = response;
-
-    // Axios automatically converts to JSON, but if invalid it converts to a string
-    if (typeof data === 'string') {
-      return [];
-    }
-
-    return data;
-  } catch (err) {
-    return [];
-  }
-}
-
-function formatJson(jsonResponseArray) {
-  return jsonResponseArray.map(({ name, url, priceData, thumbnail }) => ({
-    name,
-    url,
-    price: priceData.value,
-    thumbnail
-  }));
-}
-
+/* Run function and print result */
 (async () => {
-  const data = await fetchUrlList();
-  console.log(data);
+  const result = await fetchUrlList();
+  console.log(result);
 })();
 
 module.exports = {
