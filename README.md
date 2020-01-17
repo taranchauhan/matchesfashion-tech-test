@@ -23,7 +23,7 @@ Installs the app dependencies
 
 ### `npm start`
 
-Runs the function in `src/index.js` and console logs the result.
+Invokes the `fetchUrlList()` function in `src/index.js` and console logs the result.
 
 ### `npm test`
 
