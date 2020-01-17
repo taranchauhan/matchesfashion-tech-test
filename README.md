@@ -9,9 +9,11 @@ This repository assumes that you have the following installed:
 1. Node 10
 2. npm
 
-## Editing Config to change URL's
+## Configuration file
 
-You will only need to edit `src/config.js`, which contains the list of URL's that the function in `src/index.js` will fetch from.
+The file `src/config.js` contains the list of URL's that the `fetchUrlList` function in `src/index.js` will fetch from.
+
+This is prepopulated with the required list.
 
 ## Available Scripts
 
