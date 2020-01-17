@@ -12,19 +12,44 @@ const URL_LIST = require('./config');
  *
  * The function should return Array only.
  */
-function fetchURLList() {
-  return [
-    {
-      name: 'product name',
-      url: '/test/123',
-      price: 10,
-      thumbnail: 'https://thumb_url/123.jpg'
-    }
-  ];
+async function fetchUrlList() {
+  const formattedJsonArray = (
+    await Promise.all(URL_LIST.map(url => fetchJsonFromUrl(url)))
+  ).map(jsonResponseArray => formatJson(jsonResponseArray));
+
+  return [].concat(...formattedJsonArray);
 }
 
-console.log(fetchURLList());
+async function fetchJsonFromUrl(url) {
+  try {
+    const response = await axios.get(url);
+    const { data } = response;
+
+    // Axios automatically converts to JSON, but if invalid it converts to a string
+    if (typeof data === 'string') {
+      return [];
+    }
+
+    return data;
+  } catch (err) {
+    throw new Error('Failed to fetch from URL');
+  }
+}
+
+function formatJson(jsonResponseArray) {
+  return jsonResponseArray.map(({ name, url, priceData, thumbnail }) => ({
+    name,
+    url,
+    price: priceData.value,
+    thumbnail
+  }));
+}
+
+(async () => {
+  const data = await fetchUrlList();
+  console.log(data);
+})();
 
 module.exports = {
-  fetchURLList
+  fetchUrlList
 };
